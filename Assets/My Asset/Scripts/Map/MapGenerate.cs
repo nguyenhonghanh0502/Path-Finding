@@ -1,4 +1,4 @@
- using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathFinding;
@@ -121,6 +121,22 @@ public class MapGenerate : MonoBehaviour
         foreach (Transform cell in cellMapParent)
         {
             Destroy(cell.gameObject);
+        }
+    }
+
+    //map size được cập nhật vào lần sinh map tiếp theo sau khi cập nhật
+    public void UpdateMapSize(int width, int height)
+    {
+        if (width >= data.WidthLimits.x && width <= data.WidthLimits.y)
+        {
+            _size.x = width;
+            data.UpdateWidth(width);
+        }
+
+        if (height >= data.HeighthLimits.x && height >= data.HeighthLimits.y)
+        {
+            _size.y = height;
+            data.UpdateHeight(height);
         }
     }
 }

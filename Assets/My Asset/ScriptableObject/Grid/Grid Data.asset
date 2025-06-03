@@ -17,4 +17,6 @@ MonoBehaviour:
   start: {x: 0, y: 0}
   goal: {x: 4, y: 4}
   CellData: {fileID: 11400000, guid: d247f0d5279d3e9478f8b658f5d72540, type: 2}
+  WidthLimits: {x: 5, y: 10}
+  HeighthLimits: {x: 5, y: 10}
   ObstacleProbability: 0.2

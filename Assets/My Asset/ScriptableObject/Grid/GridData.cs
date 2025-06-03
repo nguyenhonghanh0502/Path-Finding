@@ -15,8 +15,8 @@ public class GridData : AData
     private Vector2Int goal = new Vector2Int(-1, -1);
 
     public CellData CellData;
-    public (int min, int max) WidthLimits = (5, 10);
-    public (int min, int max) HeighthLimits = (5, 10);
+    public Vector2Int WidthLimits = new Vector2Int(5, 10);
+    public Vector2Int HeighthLimits = new Vector2Int(5, 10);
     public float ObstacleProbability = 0.2f;
 
     #region Init
@@ -48,8 +48,8 @@ public class GridData : AData
         Vector2Int finalSize = size;
         if (finalSize == new Vector2Int(-1, -1))
         {
-            int width = Random.Range(WidthLimits.min, WidthLimits.max);
-            int height = Random.Range(HeighthLimits.min, HeighthLimits.max);
+            int width = Random.Range(WidthLimits.x, WidthLimits.y);
+            int height = Random.Range(HeighthLimits.x, HeighthLimits.y);
             finalSize = new Vector2Int(width, height);
         }
         return finalSize;
@@ -142,6 +142,18 @@ public class GridData : AData
             4 => CellState.Path,
             _ => CellState.Empty
         };
+    }
+    #endregion
+
+    #region Update
+    public void UpdateWidth(int width)
+    {
+        size.x = width;
+    }
+
+    public void UpdateHeight(int height)
+    {
+        size.y = height;
     }
     #endregion
 }

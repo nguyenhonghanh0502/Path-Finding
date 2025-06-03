@@ -24,6 +24,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMP_InputField goalYIF;
 
+    [Header("Manual Update Map Size")]
+    [SerializeField]
+    private TMP_InputField widthIF;
+
+    [SerializeField]
+    private TMP_InputField heightIF;
+
     public void UpdateStartGoalPoint()
     {
         mapCtrl.UpdateStartIndex(Convert(startXIF, startYIF));
@@ -60,5 +67,10 @@ public class UIManager : MonoBehaviour
     {
         mapCtrl.DesTroyAllCells();
         mapCtrl.GenerateMap();
+    }
+
+    public void UpdateMapSize()
+    {
+        mapCtrl.UpdateMapSize(ConvertToInt(widthIF), ConvertToInt(heightIF));
     }
 }
