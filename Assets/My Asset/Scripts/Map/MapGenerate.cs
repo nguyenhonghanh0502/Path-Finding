@@ -104,7 +104,7 @@ public class MapGenerate : MonoBehaviour
     {
         if (_cells.ContainsKey(index))
         {
-            _cells[_goalIndex].UpdateState(state);
+            _cells[index].UpdateState(state);
         }
         _grid[index.x, index.y] = indexState;
     }

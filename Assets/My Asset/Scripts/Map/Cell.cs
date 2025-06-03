@@ -19,6 +19,7 @@ public class Cell : MonoBehaviour
             CellState.Path => Color.yellow,
             _ => Color.white
         };
+        
     }
 
     public bool IsSamePos((int x, int y) val)
