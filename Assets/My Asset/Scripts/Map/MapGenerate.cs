@@ -8,11 +8,13 @@ public class MapGenerate : MonoBehaviour
     [SerializeField] GridData data;
     [SerializeField] Transform cellMapParent;
 
+    [SerializeField]
+    private Vector2Int startIndex;
+
+    [SerializeField]
+    private Vector2Int goalIndex;
+
     private int[,] _grid;
-    private Vector2Int _start;
-    public Vector2Int GetStart => _start;
-    private Vector2Int _goal;
-    public Vector2Int GetGoal => _goal;
     private Dictionary<Vector2Int, Cell> _cells = new();
     private Vector2Int _size;
     private List<Node> _path = new();
@@ -29,10 +31,15 @@ public class MapGenerate : MonoBehaviour
         {
             ResetPathColor();
 
-            Node start = new Node(_start.x, _start.y);
-            Node goal = new Node(_goal.x, _goal.y);
+            Node start = new Node(startIndex.x, startIndex.y);
+            Node goal = new Node(goalIndex.x, goalIndex.y);
 
             _path = AStarPathFinding.AStar(_grid, start, goal);
+            if (_path == null)
+            {
+                Debug.Log("Cant Find Path");
+                return;
+            }
             UpdatePathColor();
         }
     }
@@ -51,6 +58,7 @@ public class MapGenerate : MonoBehaviour
 
     private void ResetPathColor()
     {
+        if (_path == null) return;
         foreach (Node node in _path)
         {
             Vector2Int index = new Vector2Int(node.X, node.Y);
@@ -65,8 +73,8 @@ public class MapGenerate : MonoBehaviour
     {
         _size = data.LoadSize();
         _grid = data.GenerateGrid((_size.x, _size.y));
-        _start = data.GetStart(_grid);
-        _goal = data.GetGoal(_grid, _start);
+        startIndex = data.GetStart(_grid);
+        goalIndex = data.GetGoal(_grid, startIndex);
         _cells = data.FactoryGridMap(_grid, cellMapParent);
     }
 }
