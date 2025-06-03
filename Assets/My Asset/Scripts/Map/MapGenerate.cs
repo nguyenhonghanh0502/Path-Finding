@@ -115,4 +115,12 @@ public class MapGenerate : MonoBehaviour
         UpdateState(_startIndex, CellState.Start, 2);
         UpdateState(_goalIndex, CellState.Goal, 3);
     }
+
+    public void DesTroyAllCells()
+    {
+        foreach (Transform cell in cellMapParent)
+        {
+            Destroy(cell.gameObject);
+        }
+    }
 }

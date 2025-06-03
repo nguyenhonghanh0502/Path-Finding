@@ -55,4 +55,10 @@ public class UIManager : MonoBehaviour
     {
         mapCtrl.FindPath();
     }
+
+    public void ReGenerateMap()
+    {
+        mapCtrl.DesTroyAllCells();
+        mapCtrl.GenerateMap();
+    }
 }
